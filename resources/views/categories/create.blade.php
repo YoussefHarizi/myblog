@@ -2,15 +2,19 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        Add a new Category
+        {{isset($category) ? "Update Category": "Add a new Category"}}
     </div>
     <div class="card-body">
-        <form action="{{route('categories.store')}}" method="POST">
+        <form action="{{isset($category)?route('categories.update',$category->id): route('categories.store')}}" method="POST">
 
             <div class="form-group">
                 @csrf
+                @if (isset($category))
+                @method('PUT')
+                @endif
+
                 <label for="name">Category Name</label>
-                <input id="name" class="@error('name') is-invalid @enderror form-control" type="text" name="name">
+            <input id="name" value="{{isset($category)?$category->name:old('name')}}" class="@error('name') is-invalid @enderror form-control" type="text" name="name">
 
             </div>
             @error('name')
@@ -22,7 +26,7 @@
               </div>
             @enderror
             <div class="form-group">
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit" class="btn btn-success">{{isset($category)?"Update":"Save"}}</button>
             </div>
         </form>
     </div>

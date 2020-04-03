@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostValidation;
 use Illuminate\Http\Request;
-use App\Category;
-use App\Http\Requests\CategoryValidation;
+use App\Post;
 
-class CategoryController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.index')->with('categories', Category::all());
+        return view('posts.index')->with('posts', Post::all());
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('posts.create');
     }
 
     /**
@@ -34,12 +34,16 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryValidation $request)
+    public function store(PostValidation $request)
     {
-
-        Category::create($request->all());
-        session()->flash('success', 'category added succesfully');
-        return redirect(route('categories.index'));
+        Post::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'content' => $request->content,
+            'image' => $request->image->store('images', 'public')
+        ]);
+        session()->flash('success', 'Post added successfuly');
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -59,9 +63,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Post $post)
     {
-        return view('categories.create')->with('category', $category);
+        return view('posts.create')->with('post', $post);
     }
 
     /**
@@ -71,12 +75,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        $category->name = $request->name;
-        $category->save();
-        session()->flash('success', 'Category updated succesfuly');
-        return redirect(route('categories.index'));
+        //
     }
 
     /**
@@ -85,10 +86,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Post $post)
     {
-        $category->delete();
-        session()->flash('destroy', 'category deleted');
-        return redirect(route('categories.index'));
+        $post->delete();
+        session()->flash('destroy', 'post trashed succesfuly');
+        return redirect(route('posts.index'));
     }
 }

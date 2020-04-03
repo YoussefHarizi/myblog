@@ -81,7 +81,7 @@
                             <a href="{{route('categories.index')}}">Categories</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{route('categories.create')}}">Posts</a>
+                            <a href="{{route('posts.index')}}">Posts</a>
                         </li>
 
                     </ul>
