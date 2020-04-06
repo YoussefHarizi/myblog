@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('csslink')
 </head>
 <body>
     <div id="app">
@@ -83,6 +84,9 @@
                         <li class="list-group-item">
                             <a href="{{route('posts.index')}}">Posts</a>
                         </li>
+                        <li class="list-group-item">
+                            <a href="{{route('posts.trashed')}}">Trashed Posts</a>
+                        </li>
 
                     </ul>
                 </div>
@@ -100,5 +104,6 @@
             </main>
         @endauth
     </div>
+    @yield('script');
 </body>
 </html>

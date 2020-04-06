@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -41,13 +42,15 @@
                 <textarea id="content"  placeholder="Post content" class="form-control" rows="4" name="content">{{isset($post)?$post->content:old('content')}}</textarea>
             </div>
             @if (!isset($post))
+
             <div class="form-group">
                 <label for="image">Image</label>
                 <input id="image"  class="form-control-file" type="file" name="image">
             </div>
             @else
+
                <div>
-                   <img src="{{asset('storage/'.$post->image)}}" alt="image" style="height:100px">
+                   <img src="{{asset('storage/'.$post->image)}}" alt="image" class="w-100">
                 </div>
                 <div class="form-group">
                     <label for="image">Change Image</label>
@@ -55,9 +58,18 @@
                 </div>
             @endif
             <div class="form-group">
+                <label for="category_id">Example select</label>
+                <select class="form-control" id="category_id" name="category_id">
+                  @foreach ($categories as $category)
+                      <option value="{{$category->id}}">{{$category->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+            <div class="form-group">
                 <button type="submit" class="btn btn-success">{{isset($post)?"Update":"Save"}}</button>
             </div>
         </form>
     </div>
 </div>
 @endsection
+

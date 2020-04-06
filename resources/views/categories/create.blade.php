@@ -3,6 +3,15 @@
 <div class="card">
     <div class="card-header">
         {{isset($category) ? "Update Category": "Add a new Category"}}
+        @if (session()->has('error'))
+            <div class="alert alert-danger mt-1 mb-0 fade show flash" role="alert">
+                {{session()->get('error')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+        @endif
     </div>
     <div class="card-body">
         <form action="{{isset($category)?route('categories.update',$category->id): route('categories.store')}}" method="POST">

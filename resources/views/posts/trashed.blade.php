@@ -4,8 +4,7 @@
     <div class="card-header">
         <div class="clearfix">
 
-            <span>All Posts</span>
-            <a href="{{route('posts.create')}}" class="btn btn-info float-right">Add Post</a>
+            <span>Trashed Posts</span>
         </div>
         @if (session()->has('success'))
         <div class="alert alert-success mt-1 mb-0 fade show flash" role="alert">
@@ -37,26 +36,25 @@
             </thead>
             <tbody>
 
-                @forelse ($posts as $post)
+                @foreach ($posts as $post)
                 <tr>
                     <td>
                         <img src="{{asset('storage/'.$post->image)}}" alt="image" style="height:100px;">
                     </td>
                     <td style="vertical-align:middle;" >{{$post->title}}</td>
-                    <td style="vertical-align:middle;">
+                    <td style="vertical-align:middle;" class="">
                         <form action="{{route('posts.destroy',$post->id)}}" method="POST" class="float-right ml-2">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
-                        <a href="{{route('posts.edit',$post->id)}}" class="btn btn-success float-right btn-sm">Edit</a>
+                        <a href="{{route('posts.restore',$post->id)}}" class="btn btn-success float-right  btn-sm">Restore</a>
+
                     </td>
                 </tr>
 
-                    @empty
-                    <p class="card-text m-2 text-center">No Post yet</p>
 
-                    @endforelse
+                    @endforeach
             </tbody>
         </table>
         {{-- end table --}}
