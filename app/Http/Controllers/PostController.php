@@ -6,6 +6,7 @@ use App\Http\Requests\PostValidation;
 use App\Http\Requests\UpadtePostValidation;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use App\Category;
 use Illuminate\Support\Facades\Storage;
 
@@ -39,7 +40,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create')->with('categories', Category::all());
+        return view('posts.create')->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
@@ -50,13 +51,17 @@ class PostController extends Controller
      */
     public function store(PostValidation $request)
     {
-        Post::create([
+
+        $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
             'image' => $request->image->store('images', 'public'),
             'category_id' => $request->category_id
         ]);
+        if ($request->tags_id) {
+            $post->tags()->attach($request->tags_id);
+        }
         session()->flash('success', 'Post added successfuly');
         return redirect(route('posts.index'));
     }
@@ -80,7 +85,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with('post', $post);
+        return view('posts.create', ['post' => $post, 'categories' => Category::all(), 'tags' => Tag::all()]);
     }
 
     /**
@@ -98,6 +103,9 @@ class PostController extends Controller
             Storage::disk('public')->delete($post->image);
             $data['image'] = $image;
         };
+        if ($request->tags_id) {
+            $post->tags()->sync($request->tags_id);
+        }
         session()->flash('success', 'Post updated successfuly');
         $post->update($data);
         return redirect(route('posts.index'));

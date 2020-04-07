@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TagValidation;
 use Illuminate\Http\Request;
-use App\Category;
-use App\Http\Requests\CategoryValidation;
+use App\Tag;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.index')->with('categories', Category::all());
+        return view('tags.index')->with('tags', Tag::all());
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('tags.create');
     }
 
     /**
@@ -34,12 +34,11 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryValidation $request)
+    public function store(TagValidation $request)
     {
-
-        Category::create($request->all());
-        session()->flash('success', 'category added succesfully');
-        return redirect(route('categories.index'));
+        Tag::create($request->all());
+        session()->flash('success', 'Tag added succesfully');
+        return redirect(route('tags.index'));
     }
 
     /**
@@ -59,9 +58,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Tag $tag)
     {
-        return view('categories.create')->with('category', $category);
+        return view('tags.create')->with('tag', $tag);
     }
 
     /**
@@ -71,12 +70,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryValidation $request, Category $category)
+    public function update(TagValidation $request, Tag $tag)
     {
-        $category->name = $request->name;
-        $category->save();
-        session()->flash('success', 'Category updated succesfuly');
-        return redirect(route('categories.index'));
+        $tag->name = $request->name;
+        $tag->save();
+        session()->flash('success', 'tag updated succesfully');
+        return redirect(route('tags.index'));
     }
 
     /**
@@ -85,10 +84,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Tag $tag)
     {
-        $category->delete();
-        session()->flash('destroy', 'category deleted');
-        return redirect(route('categories.index'));
+        $tag->delete();
+        session()->flash('destroy', 'tag deleted');
+        return redirect(route('tags.index'));
     }
 }

@@ -31,15 +31,20 @@ Vue.component(
  */
 
 const app = new Vue({
-    el: "#app",
+    el: "#app"
 });
 
 $(".alert.flash")
     .fadeTo(2000, 500)
-    .slideUp(500, function () {
+    .slideUp(500, function() {
         $(".alert.flash").slideUp(500);
     });
 
-$(document).ready(function () {
+$(document).ready(function() {
     $("#content").summernote();
+    // slect2
+    $("#tags_id").select2({
+        tags: true,
+        placeholder: "Select a tags"
+    });
 });

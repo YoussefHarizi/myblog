@@ -13,4 +13,12 @@ class Post extends Model
     {
         return $this->belongsTo('App\Category');
     }
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+    public function hastags($tagId)
+    {
+        return in_array($tagId, $this->tags->pluck('id')->toArray());
+    }
 }

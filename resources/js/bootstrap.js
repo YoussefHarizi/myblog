@@ -12,6 +12,7 @@ try {
 
     require("bootstrap");
     require("summernote/dist/summernote-bs4");
+    require("select2/dist/js/select2.full");
 } catch (e) {}
 
 /**

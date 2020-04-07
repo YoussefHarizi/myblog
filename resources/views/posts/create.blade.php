@@ -58,13 +58,25 @@
                 </div>
             @endif
             <div class="form-group">
-                <label for="category_id">Example select</label>
+                <label for="category_id">Select Category</label>
                 <select class="form-control" id="category_id" name="category_id">
                   @foreach ($categories as $category)
                       <option value="{{$category->id}}">{{$category->name}}</option>
                   @endforeach
                 </select>
               </div>
+              @if ($tags->count()>=1)
+
+              <div class="form-group">
+                  <label for="tags_id">Select Tags</label>
+                  <select class="form-control" id="tags_id" name="tags_id[]" multiple>
+                    @foreach ($tags as $tag)
+                        <option value="{{$tag->id}}"
+                            >{{$tag->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              @endif
             <div class="form-group">
                 <button type="submit" class="btn btn-success">{{isset($post)?"Update":"Save"}}</button>
             </div>
