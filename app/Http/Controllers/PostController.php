@@ -57,7 +57,8 @@ class PostController extends Controller
             'description' => $request->description,
             'content' => $request->content,
             'image' => $request->image->store('images', 'public'),
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'user_id' => $request->user_id
         ]);
         if ($request->tags_id) {
             $post->tags()->attach($request->tags_id);

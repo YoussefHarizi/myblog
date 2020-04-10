@@ -44,7 +44,7 @@
                </td>
             </tr>
             @empty
-            <p class="card-text">No tags yet</p>
+            <p class="card-text text-center mt-3">No tags yet</p>
             @endforelse
          </tbody>
       </table>

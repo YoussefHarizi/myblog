@@ -66487,6 +66487,13 @@ $(document).ready(function () {
   $("#tags_id").select2({
     tags: true,
     placeholder: "Select a tags"
+  }); // add class active to the sidebar
+
+  $("a.my-list").click(function () {
+    // remove classes from all
+    $("a.my-list").removeClass("active"); // add class to the one we clicked
+
+    $(this).addClass("active");
   });
 });
 

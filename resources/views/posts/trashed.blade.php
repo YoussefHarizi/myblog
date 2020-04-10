@@ -26,6 +26,10 @@
         @endif
     </div>
     <div class="card-body p-0">
+        @if ($posts->count()<=0)
+        <p class="card-text m-3 text-center">No trashed Post</p>
+
+        @else
         {{-- table --}}
         <table  class="table table-striped table-bordered">
             <thead>
@@ -58,6 +62,7 @@
             </tbody>
         </table>
         {{-- end table --}}
+        @endif
 
     </div>
 </div>

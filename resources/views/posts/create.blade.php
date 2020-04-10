@@ -33,6 +33,10 @@
                 <label for="title">Title</label>
                 <input id="title" placeholder="Post Title" value="{{isset($post)?$post->title:old('title')}}" class="form-control" type="text" name="title">
             </div>
+
+
+                <input   value="{{Auth::user()->id}}" type="hidden" name="user_id">
+
             <div class="form-group">
                 <label for="description">description</label>
                 <textarea id="description"  placeholder="Post description" class="form-control" rows="2" name="description">{{isset($post)?$post->description:old('description')}}</textarea>
@@ -65,14 +69,16 @@
                   @endforeach
                 </select>
               </div>
-              @if ($tags->count()>=1)
+              @if ($tags->count()>=1 && isset($post))
 
               <div class="form-group">
                   <label for="tags_id">Select Tags</label>
                   <select class="form-control" id="tags_id" name="tags_id[]" multiple>
                     @foreach ($tags as $tag)
                         <option value="{{$tag->id}}"
-                            >{{$tag->name}}</option>
+                            @if ($post->hastags($tag->id))
+                             selected
+                            @endif>{{$tag->name}}</option>
                     @endforeach
                   </select>
                 </div>

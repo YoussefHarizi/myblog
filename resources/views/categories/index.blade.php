@@ -40,7 +40,7 @@
                </td>
             </tr>
             @empty
-            <p class="card-text">No categories yet</p>
+            <p class="card-text text-center mt-3">No categories yet</p>
             @endforelse
          </tbody>
       </table>

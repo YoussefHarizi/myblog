@@ -36,4 +36,33 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function isAdmin()
+    {
+        return $this->role == 'Admin';
+    }
+    public function getGravatar()
+    {
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+        return "http://gravatar.com/avatar/$hash";
+    }
+    public function hasPicture()
+    {
+        if ($this->profile->picture != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function getPicture()
+    {
+        return $this->profile->picture;
+    }
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

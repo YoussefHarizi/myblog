@@ -77,21 +77,29 @@
         <div class="container">
             <div class="row py-4">
                 <div class="col-md-4">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="{{route('categories.index')}}">Categories</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{{route('tags.index')}}">Tags</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{{route('posts.index')}}">Posts</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{{route('posts.trashed')}}">Trashed Posts</a>
-                        </li>
+                    <div class="list-group">
+                        @if (auth()->user()->isAdmin())
 
-                    </ul>
+                            <a  class="list-group-item list-group-item-action {{ Request::is('users/index') ? 'active' : '' }}" href="{{route('users.index')}}">Users</a>
+
+
+                        @endif
+
+                            <a class="list-group-item list-group-item-action {{ Request::is('categories*') ? 'active' : '' }}" href="{{route('categories.index')}}">Categories</a>
+
+
+                            <a class="list-group-item list-group-item-action {{ Request::is('tags*') ? 'active' : '' }}" href="{{route('tags.index')}}">Tags</a>
+
+
+                            <a class="list-group-item list-group-item-action {{ Request::is('posts') ? 'active' : '' }}" href="{{route('posts.index')}}">Posts</a>
+
+
+                            <a  class="list-group-item list-group-item-action {{ Request::is('trashed*') ? 'active' : '' }}" href="{{route('posts.trashed')}}">Trashed Posts</a>
+
+                            <a class="list-group-item list-group-item-action {{ Request::is('users/*/profile') ? 'active' : '' }}" href="{{route('user.edit',auth()->user()->id)}}">Profile</a>
+
+
+                    </div>
                 </div>
                 <div class="col-md-8">
 
