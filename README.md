@@ -29,14 +29,16 @@ php artisan key:generate
 Run ``` npm install ``` to install all front end dependencies
 Run ``` php artisan storage:link ``` to link storage to public file
 # Screenshots
-<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/users.png" style="width:400;box-shadow: 2px 2px 5px black;"></p>
-<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/categories.png" style="width:400;box-shadow: 2px 2px 5px black;"></p>
-<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/tags.png" style="width:400;box-shadow: 2px 2px 5px black;"></p>
-<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/posts.png" style="width:400;box-shadow: 2px 2px 5px black;"></p>
-<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/trashed.png" style="width:400;box-shadow: 2px 2px 5px black;"></p>
-<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/profile.png" style="width:400;box-shadow: 2px 2px 5px black;"></p>
+<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/users.png" style="width:400;box-shadow: 2px 2px 5px black;margin-bottom:2px;"></p>
+<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/categories.png" style="width:400;box-shadow: 2px 2px 5px black;margin-bottom:2px"></p>
+<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/tags.png" style="width:400;box-shadow: 2px 2px 5px black;margin-bottom:2px"></p>
+<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/posts.png" style="width:400;box-shadow: 2px 2px 5px black;margin-bottom:2px"></p>
+<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/trashed.png" style="width:400;box-shadow: 2px 2px 5px black;margin-bottom:2px"></p>
+<p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/profile.png" style="width:400;box-shadow: 2px 2px 5px black;margin-bottom:2px"></p>
 <p align="center"><img src="https://github.com/YoussefHarizi/myblog/blob/master/screenshots/front.png" style="width:400;box-shadow: 2px 2px 5px black;"></p>
-# Contributing
+
+## Contributing
+
 Do not hesitate to contribute to the project by adapting or adding features ! Bug reports or pull requests are welcome.
 
 ## License
