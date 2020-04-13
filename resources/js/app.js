@@ -35,9 +35,9 @@ const app = new Vue({
 });
 
 $(".alert.flash")
-    .fadeTo(2000, 500)
+    .fadeTo(3000, 500)
     .slideUp(500, function() {
-        $(".alert.flash").slideUp(500);
+        $(".alert.flash").slideUp(1000);
     });
 
 $(document).ready(function() {

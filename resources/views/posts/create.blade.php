@@ -69,14 +69,14 @@
                   @endforeach
                 </select>
               </div>
-              @if ($tags->count()>=1 && isset($post))
+              @if ($tags->count()>=1)
 
               <div class="form-group">
                   <label for="tags_id">Select Tags</label>
                   <select class="form-control" id="tags_id" name="tags_id[]" multiple>
                     @foreach ($tags as $tag)
                         <option value="{{$tag->id}}"
-                            @if ($post->hastags($tag->id))
+                            @if (isset($post) && $post->hastags($tag->id))
                              selected
                             @endif>{{$tag->name}}</option>
                     @endforeach

@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index')->name('primary');
+Route::get('/archive', 'WelcomeController@archive')->name('pages.archive');
+Route::get('/contact', 'WelcomeController@contact')->name('pages.contact');
 
 Auth::routes();
 

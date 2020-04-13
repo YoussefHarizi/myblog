@@ -45,24 +45,28 @@
                 @foreach ($posts as $post)
                 <tr>
                     <td>
-                        <img src="{{asset('storage/'.$post->image)}}" alt="image" style="height:100px;">
+                        <img src="{{asset('storage/'.$post->image)}}" alt="image" style="width:120px;background-size:cover">
                     </td>
                     <td style="vertical-align:middle;" >{{$post->title}}</td>
                     <td style="vertical-align:middle;">
                         <form action="{{route('posts.destroy',$post->id)}}" method="POST" class="float-right ml-2">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Trash</button>
                         </form>
                         <a href="{{route('posts.edit',$post->id)}}" class="btn btn-success float-right btn-sm">Edit</a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
+
         </table>
         {{-- end table --}}
         @endif
+        <nav class="d-flex justify-content-center">
 
+            {{$posts->links()}}
+        </nav>
     </div>
 </div>
 

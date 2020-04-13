@@ -45,7 +45,12 @@ class UserController extends Controller
         session()->flash('success', 'User profile updated successfully');
         $profile->update($data);
         $user->update($data);
-        return redirect(route('home'));
+        if ($user->role == 'Admin') {
+            return redirect(route('dashboard'));
+        } else {
+
+            return redirect(route('home'));
+        }
     }
 
     public function make_admin(User $user)

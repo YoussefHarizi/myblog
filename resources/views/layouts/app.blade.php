@@ -91,7 +91,7 @@
                             <a class="list-group-item list-group-item-action {{ Request::is('tags*') ? 'active' : '' }}" href="{{route('tags.index')}}">Tags</a>
 
 
-                            <a class="list-group-item list-group-item-action {{ Request::is('posts') ? 'active' : '' }}" href="{{route('posts.index')}}">Posts</a>
+                            <a class="list-group-item list-group-item-action {{ Request::is('posts*') ? 'active' : '' }}" href="{{route('posts.index')}}">Posts</a>
 
 
                             <a  class="list-group-item list-group-item-action {{ Request::is('trashed*') ? 'active' : '' }}" href="{{route('posts.trashed')}}">Trashed Posts</a>

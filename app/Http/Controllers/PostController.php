@@ -19,7 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with('posts', Post::all());
+        $posts_pagination = Post::paginate(5);
+        return view('posts.index')->with('posts', $posts_pagination);
     }
 
     /**
@@ -73,9 +74,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        $user = $post->user;
+        $latestpost = Post::orderBy('created_at', 'desc')->take(5)->get();
+        return view('pages.single', ['post' => $post, 'categories' => Category::all(), 'tags' => Tag::all(), 'user' => $user, 'latest' => $latestpost]);
     }
 
     /**
@@ -98,7 +101,7 @@ class PostController extends Controller
      */
     public function update(UpadtePostValidation $request, Post $post)
     {
-        $data = $request->only(['title', 'description', 'content']);
+        $data = $request->only(['title', 'description', 'content', 'category_id']);
         if ($request->hasfile('image')) {
             $image = $request->image->store('images', 'public');
             Storage::disk('public')->delete($post->image);
